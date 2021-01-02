@@ -23,7 +23,10 @@ class MyExpandableTile extends StatelessWidget {
         onTap: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (BuildContext context) {
-            return MyImageView(imageName: product.imageName);
+            return MyImageView(
+              imageName: product.imageName,
+              type: 'product',
+            );
           }));
         },
         child: CircleAvatar(

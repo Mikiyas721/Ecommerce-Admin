@@ -5,7 +5,20 @@ import '../../data/bloc/blocProvider/provider.dart';
 import '../../ui/customWidget/myExpandableTile.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState()=>_HomePageState();
+
+}
+class _HomePageState extends State<HomePage> {
+  ScrollController controller = ScrollController();
+  @override
+  void initState() {
+    controller.addListener(() {
+
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,14 +27,25 @@ class HomePage extends StatelessWidget {
           builder: (BuildContext context, Bloc bloc) {
             bloc.loadPendingProducts();
             return NestedScrollView(
+              controller: controller,
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
                   return [
                     SliverAppBar(
-                      backgroundColor: Color(0xff1a1a1a),
+                      pinned: true,
+                      title: innerBoxIsScrolled?Text('Pending Products'):null,
+                      expandedHeight: MediaQuery.of(context).size.height * 0.35,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(30),
+                              bottomRight: Radius.circular(30))),
+                      backgroundColor: Color(0xffa6a6a6),
                       flexibleSpace: FlexibleSpaceBar(
                         background: Container(
                           decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30)),
                               image: DecorationImage(
                                   image: AssetImage('assets/logo.jpg'),
                                   fit: BoxFit.cover)),
@@ -49,7 +73,7 @@ class HomePage extends StatelessWidget {
           }),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.people, color: Colors.white),
-        backgroundColor: Color(0xff11a1a1a),
+        backgroundColor: Color(0xffa6a6a6),
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (BuildContext context) {

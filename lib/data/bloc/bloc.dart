@@ -1,3 +1,5 @@
+import 'package:admin/data/model/user.dart';
+
 import '../../data/model/product.dart';
 import '../../utils/http.dart';
 import '../../utils/disposable.dart';
@@ -34,7 +36,7 @@ class Bloc extends Disposable with Http {
   void loadUser() async {
     _users.add((await getAllUsers())
         .data
-        .map((map) => Product.fromJson(map))
+        .map((map) => User.fromJson(map))
         .toList());
   }
 

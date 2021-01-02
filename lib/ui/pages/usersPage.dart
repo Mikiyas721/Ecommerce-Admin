@@ -13,20 +13,23 @@ class UsersPage extends StatelessWidget {
           bloc.loadUser();
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: Color(0xff1a1a1a),
+              backgroundColor: Color(0xffa6a6a6),
               title: Text(
                 'Users',
                 style: TextStyle(color: Colors.white),
               ),
               actions: [
-                StreamBuilder(
-                    stream: bloc.usersStream,
-                    builder:
-                        (BuildContext context, AsyncSnapshot<List> snapshot) {
-                      return snapshot.data == null
-                          ? CircularProgressIndicator()
-                          : Text('${snapshot.data.length} Users');
-                    })
+                Padding(
+                  padding: EdgeInsets.only(right: 20, top: 20),
+                  child: StreamBuilder(
+                      stream: bloc.usersStream,
+                      builder:
+                          (BuildContext context, AsyncSnapshot<List> snapshot) {
+                        return snapshot.data == null
+                            ? Text('')
+                            : Text('${snapshot.data.length} Users');
+                      }),
+                )
               ],
             ),
             body: StreamBuilder(
@@ -39,8 +42,7 @@ class UsersPage extends StatelessWidget {
                       : ListView.builder(
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return UserCard(
-                                user: User.fromJson(snapshot.data[index]));
+                            return UserCard(user: snapshot.data[index]);
                           });
                 }),
           );

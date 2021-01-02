@@ -13,38 +13,63 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-      child: Padding(
-        padding: EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 20),
+      elevation: 5,
+      shape: RoundedRectangleBorder(borderRadius:BorderRadius.all(Radius.circular(20))),
+      margin: EdgeInsets.only(left: 20, right: 20, bottom: 5,top: 5),
+      child: Container(
+        padding:EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            gradient:
+                LinearGradient(colors: [Color(0xffa6a6a6), Color(0xff2f2f2f)])),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (BuildContext context) {
-                      return MyImageView(imageName: user.imageName);
+                      return MyImageView(
+                        imageName: user.imageName,
+                        type: 'user',
+                      );
                     }));
                   },
                   child: CircleAvatar(
+                    radius: 35,
                     backgroundImage: NetworkImage(
-                        '${Configs.apiBasePath}/containers/product/download/${user.imageName}'),
+                        '${Configs.apiBasePath}/containers/user/download/${user.imageName}'),
                   ),
                 ),
+                SizedBox(width: 20,),
                 Text(
                   user.getUserName(),
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 24, color: Colors.white),
                 )
               ],
             ),
-            Divider(),
-            LabeledText(label: 'Phone Number', value: user.phoneNumber),
-            LabeledText(label: 'E-mail', value: user.email),
-            LabeledText(label: 'Password', value: user.password),
+            Divider(
+              thickness: 1.2,
+              color: Color(0xffffffcc),
+            ),
+            LabeledText(
+              label: 'Phone Number',
+              value: user.phoneNumber,
+              labelColor: Colors.white,
+            ),
+            LabeledText(
+              label: 'E-mail',
+              value: user.email,
+              labelColor: Colors.white,
+            ),
+            LabeledText(
+              label: 'Password',
+              value: user.password,
+              labelColor: Colors.white,
+            ),
           ],
         ),
       ),
