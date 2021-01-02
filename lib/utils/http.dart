@@ -8,6 +8,11 @@ class Http {
       connectTimeout: 60000,
       baseUrl: Configs.apiBasePath));
 
+  Future<Response> getAllUsers()async{
+    Response response =
+    await _dio.get('/users');
+    return response;
+  }
   Future<Response> getPendingProducts() async {
     Response response =
         await _dio.get('/products?filter[where][approved]=false');
