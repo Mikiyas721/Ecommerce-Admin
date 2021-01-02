@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.10"
   fake_async:
     dependency: transitive
     description:
@@ -67,6 +74,27 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.4"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.4"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.16.1"
   matcher:
     dependency: transitive
     description:
@@ -88,6 +116,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.1"
+  rxdart:
+    dependency: "direct main"
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.24.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -135,6 +170,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.19-nullsafety.2"
+  toast:
+    dependency: "direct main"
+    description:
+      name: toast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.5"
   typed_data:
     dependency: transitive
     description:
