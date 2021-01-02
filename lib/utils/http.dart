@@ -1,5 +1,5 @@
-import 'package:admin/data/model/product.dart';
-import 'package:admin/utils/configs.dart';
+import '../data/model/product.dart';
+import '../utils/configs.dart';
 import 'package:dio/dio.dart';
 
 class Http {

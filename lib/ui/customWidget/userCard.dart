@@ -1,6 +1,6 @@
-import 'package:admin/data/model/user.dart';
-import 'package:admin/ui/customWidget/labeledText.dart';
-import 'package:admin/utils/configs.dart';
+import '../../data/model/user.dart';
+import '../../ui/customWidget/labeledText.dart';
+import '../../utils/configs.dart';
 import 'package:flutter/material.dart';
 
 import 'myImageView.dart';

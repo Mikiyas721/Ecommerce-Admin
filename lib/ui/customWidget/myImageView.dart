@@ -1,4 +1,4 @@
-import 'package:admin/utils/configs.dart';
+import '../../utils/configs.dart';
 import 'package:flutter/material.dart';
 
 class MyImageView extends StatelessWidget {

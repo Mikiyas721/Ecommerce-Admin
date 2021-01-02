@@ -1,6 +1,5 @@
-import 'package:admin/data/model/product.dart';
-import 'package:admin/ui/pages/usersPage.dart';
-
+import '../../data/model/product.dart';
+import '../../ui/pages/usersPage.dart';
 import '../../data/bloc/bloc.dart';
 import '../../data/bloc/blocProvider/provider.dart';
 import '../../ui/customWidget/myExpandableTile.dart';

@@ -1,7 +1,7 @@
-import 'package:admin/data/bloc/bloc.dart';
-import 'package:admin/data/bloc/blocProvider/provider.dart';
-import 'package:admin/data/model/user.dart';
-import 'package:admin/ui/customWidget/userCard.dart';
+import '../../data/bloc/bloc.dart';
+import '../../data/bloc/blocProvider/provider.dart';
+import '../../data/model/user.dart';
+import '../../ui/customWidget/userCard.dart';
 import 'package:flutter/material.dart';
 
 class UsersPage extends StatelessWidget {
