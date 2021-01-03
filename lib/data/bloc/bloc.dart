@@ -23,21 +23,19 @@ class Bloc extends Disposable with Http {
         .toList());
   }
 
-  void onDecline(String myId) async {
-    await declineProduct(myId);
+  void onDecline(String myId, String id) async {
+    await declineProduct(id); // TODO also delete image
     await loadPendingProducts();
   }
 
-  void onApprove(String myId) async {
-    await approveProduct(myId);
+  void onApprove(String myId, String id) async {
+    await approveProduct(myId, id);
     await loadPendingProducts();
   }
 
   void loadUser() async {
-    _users.add((await getAllUsers())
-        .data
-        .map((map) => User.fromJson(map))
-        .toList());
+    _users.add(
+        (await getAllUsers()).data.map((map) => User.fromJson(map)).toList());
   }
 
   @override

@@ -19,11 +19,10 @@ class Http {
     return response;
   }
 
-  Future<Response> approveProduct(String myId) async {
+  Future<Response> approveProduct(String myId,String id) async {
     Product product = Product.fromJson(
         (await _dio.get('/products?filter[where][myId]=$myId')).data[0]);
-    await _dio.delete('/products?filter[where][myId]=$myId');
-    ///put not updating, used delete and add new instead
+    await declineProduct(id);
     return await _dio.put('/products',
         data: Product(
                 id: product.id,
@@ -42,7 +41,7 @@ class Http {
                 approved: true)
             .toJSON());
   }
-  Future<Response> declineProduct(String myId)async{
-    return await _dio.delete('/products?filter[where][myId]=$myId');
+  Future<Response> declineProduct(String id)async{
+    return await _dio.delete('/products/$id');
   }
 }

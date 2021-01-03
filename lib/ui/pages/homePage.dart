@@ -5,20 +5,29 @@ import '../../data/bloc/blocProvider/provider.dart';
 import '../../ui/customWidget/myExpandableTile.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget{
+class HomePage extends StatefulWidget {
   @override
-  State<StatefulWidget> createState()=>_HomePageState();
-
+  State<StatefulWidget> createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
   ScrollController controller = ScrollController();
+  bool hasMoved;
+
   @override
   void initState() {
+    hasMoved = false;
     controller.addListener(() {
-
+      setState(() {
+        if (controller.offset > 220)
+          hasMoved = true;
+        else
+          hasMoved = false;
+      });
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,13 +36,13 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context, Bloc bloc) {
             bloc.loadPendingProducts();
             return NestedScrollView(
-              controller: controller,
+                controller: controller,
                 headerSliverBuilder:
                     (BuildContext context, bool innerBoxIsScrolled) {
                   return [
                     SliverAppBar(
                       pinned: true,
-                      title: innerBoxIsScrolled?Text('Pending Products'):null,
+                      title: hasMoved ? Text('Pending Products') : null,
                       expandedHeight: MediaQuery.of(context).size.height * 0.35,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
@@ -55,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                   ];
                 },
                 body: StreamBuilder(
-                    stream: null,
+                    stream: bloc.pendingProductsStream,
                     builder: (context, AsyncSnapshot<List> snapshot) {
                       return snapshot.data == null
                           ? Center(child: CircularProgressIndicator())
@@ -63,12 +72,13 @@ class _HomePageState extends State<HomePage> {
                               ? Center(
                                   child: Text('No Pending Products'),
                                 )
-                              : ListView.builder(itemBuilder:
-                                  (BuildContext context, int index) {
-                                  return MyExpandableTile(
-                                      product: Product.fromJson(
-                                          snapshot.data[index]));
-                                });
+                              : ListView.builder(
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return MyExpandableTile(
+                                        product: snapshot.data[index]);
+                                  });
                     }));
           }),
       floatingActionButton: FloatingActionButton(
